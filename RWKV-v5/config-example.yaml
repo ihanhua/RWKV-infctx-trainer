@@ -94,8 +94,8 @@ trainer:
       # which will create a `rwkv_model.pth` in the checkpoint directory.
       #
       # Do not use the `zero_to_fp32.py` script as that will have export format issues
-      dirpath: /path/to/your/checkpoint/dir
-      filename: null
+      dirpath: /content/drive/MyDrive/ColabNotebooks/model
+      filename: rwkv
       
       # Save the top/last K checkpoints
       save_top_k: 3
@@ -214,7 +214,7 @@ trainer:
 ########################################
 model:
   # Model to start the finetune/training process from
-  load_model: /path/to/your/model.pth
+  load_model: /content/drive/MyDrive/ColabNotebooks/RWKV-5-1B5-one-state-slim-novel-tuned.pth
 
   # Context length to use for the training process
   # the larger the number (and batch size) the larger the vram usage
@@ -225,7 +225,7 @@ model:
   # This allows the training of extreamly large context length (eg. 100k),
   # without eating up too much vram by keeping the training context length
   # to a resonable number sutible to the current GPU setup
-  ctx_len: 2048
+  ctx_len: 16000
 
   # Learning rate of the training process
   # ---
@@ -307,7 +307,7 @@ model:
   # torch.set_float32_matmul_precision, used to optimize operations with tensor cores
   # this should be set as null, for non cuda core GPUs. Has no major impact AFAIK
   # ---
-  # torch_set_float32_matmul_precision: 'high'
+  torch_set_float32_matmul_precision: null
 
   # Adam optimizer settings
   # You probably want to leave this alone, unless you know what you are doing
@@ -332,7 +332,7 @@ data:
   # dataset will be built and tokenized by the huggingface dataset process.
   #
   # If using relative path, this should be relative to the trainer script path
-  data_path: /path/to/store/your/data_path/
+  data_path: /content/drive/MyDrive/ColabNotebooks/
 
   # Other wise provide the source path, which is used as huggingface dataset path
   # this will be used to populate the dataset_path
@@ -345,7 +345,7 @@ data:
   # If source is disabled, all other params, except data_path, is effectively ignored
   # as the dataset building process is skipped. You are expected to prepare the huggingface
   # compliant dataset yourself, and save it to the data_path
-  source: null
+  source: json
   # source: "teven/enwiki_00k"   # Hugging face dataset
   # source: text                 # Text mode, used with source_data_dir
 
@@ -367,7 +367,7 @@ data:
 
   # Use data_dir, if you are using source=text/json/etc
   # If using relative path, this should be relative to the trainer script path
-  # source_data_dir: ../dataset-text/
+  source_data_dir: /content/drive/MyDrive/ColabNotebooks/
 
   # After loading the dataset, split out test data used for validation, 
   # This process is skipped if the dataset includes a test split
@@ -382,7 +382,7 @@ data:
   # Tokenizer to use, use either the inbuilt 'neox', or 'world' tokenizer
   # If using a custom tokenizer, provide the HF tokenizer name/path
   # ---
-  tokenizer: neox
+  tokenizer: world
 
   # Minimum / Maximum token size of the dataset to use
   # useful for filtering out small noisy data samples from large datasets
@@ -440,4 +440,4 @@ data:
 
 # Path to the current checkpoint to continue training from
 # this should be the directory path, and ends with `.ckpt/`
-ckpt_path: null
+ckpt_path: /content/drive/MyDrive/ColabNotebooks/model
