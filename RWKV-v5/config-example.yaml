@@ -332,7 +332,7 @@ data:
   # dataset will be built and tokenized by the huggingface dataset process.
   #
   # If using relative path, this should be relative to the trainer script path
-  data_path: /content/drive/MyDrive/ColabNotebooks/
+  data_path: /content/drive/MyDrive/ColabNotebooks/data
 
   # Other wise provide the source path, which is used as huggingface dataset path
   # this will be used to populate the dataset_path
@@ -367,7 +367,7 @@ data:
 
   # Use data_dir, if you are using source=text/json/etc
   # If using relative path, this should be relative to the trainer script path
-  source_data_dir: /content/drive/MyDrive/ColabNotebooks/
+  source_data_dir: /content/drive/MyDrive/ColabNotebooks/data
 
   # After loading the dataset, split out test data used for validation, 
   # This process is skipped if the dataset includes a test split
